@@ -1,0 +1,46 @@
+{% load static %}
+
+<div class="bg-slate-800">
+    <nav class="flex flex-wrap justify-between items-center mx-16 text-2xl">
+        <ul>
+            <a href="/"><img class="w-52 h-auto" src="{% static 'images/nav-logo.png' %}" alt=""></a>
+        </ul>
+
+        <ul class="flex gap-3">
+            <li class="bg-blue-500 hover:bg-blue-700 transition duration-300"><a href="/"
+                                                                                 class="block w-30 text-center p-6">Home</a>
+            </li>
+            <li class="bg-blue-500 hover:bg-blue-700 transition duration-300"><a href="/"
+                                                                                 class="block w-30 text-center p-6">Home</a>
+            </li>
+            <li class="bg-blue-500 hover:bg-blue-700 transition duration-300"><a href="/"
+                                                                                 class="block w-30 text-center p-6">Home</a>
+            </li>
+            <li class="bg-blue-500 hover:bg-blue-700 transition duration-300"><a href="/"
+                                                                                 class="block w-30 text-center p-6">Home</a>
+            </li>
+        </ul>
+        <ul class="flex gap-3">
+            {% if user.is_authenticated %}
+            <li class="bg-blue-500 hover:bg-blue-700 transition duration-300">
+                <a href="{% url 'logout' %}" class="p-6 block w-30 text-center">
+                    Logout
+                </a>
+            </li>
+
+            {% else %}
+            <li class="bg-blue-500 hover:bg-blue-700  transition duration-300">
+                <a href="{% url 'register' %}" class="p-6 block w-30 text-center ">
+                    register
+                </a>
+            </li>
+            <li class="bg-blue-500 hover:bg-blue-900 transition duration-300">
+                <a href="{% url 'login' %}" class="p-6 block w-30 text-center ">
+                    login
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+

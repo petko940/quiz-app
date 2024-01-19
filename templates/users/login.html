@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/login-signup.css' %}">
+{% endblock %}
+
+{% block title %}
+login and signup
+{% endblock %}
+
+{% block content %}
+
+<section class="rounded mx-auto mt-10 text-gray-400 bg-slate-900 body-font w-2/5">
+    <form method="POST" class="">
+        {% csrf_token %}
+        <h2 class="text-6xl text-center my-10 pt-4">Login</h2>
+        <div class="flex flex-col gap-3 px-14 py-10">
+            {{ form }}
+        </div>
+
+        <div class="flex justify-center pb-10">
+            <button class="btn font-bold px-4 rounded">Login</button>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

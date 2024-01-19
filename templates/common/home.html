@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block navigation %}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="text-teal-400 text-6xl text-center mt-10">Home page</h1>
+
+<div class="flex justify-center mt-10">
+    <a href="{% url 'quiz' %}" class="text-4xl 
+   text-gray-100 w-30 mx-auto p-5 bg-orange-700 rounded-lg">Try quiz</a>
+</div>
+
+{% endblock %}
