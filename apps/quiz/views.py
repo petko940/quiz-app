@@ -12,7 +12,7 @@ from apps.quiz.serializers import QuestionSerializer
 
 # Create your views here.
 class QuizView(views.TemplateView):
-    template_name = 'quiz/quiz.html'
+    template_name = 'quiz/single-question.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

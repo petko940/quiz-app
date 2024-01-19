@@ -3,6 +3,6 @@ from django.urls import path
 from apps.quiz.views import QuizView, ApiView
 
 urlpatterns = [
-    path('quiz/', QuizView.as_view(), name='quiz'),
-    path('api/<int:pk>/', ApiView.as_view(), name='api-quiz'),
+    path('single-question/', QuizView.as_view(), name='single-question'),
+    path('api/<int:pk>/', ApiView.as_view(), name='api-single-question'),
 ]
