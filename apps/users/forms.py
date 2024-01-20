@@ -1,7 +1,8 @@
 from django import forms
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
+
+UserModel = get_user_model()
 
 
 class RegistrationForm(UserCreationForm):
@@ -44,7 +45,6 @@ class RegistrationForm(UserCreationForm):
                 'name': 'logpass',
             }
         )
-
     )
 
     password2 = forms.CharField(
@@ -64,12 +64,13 @@ class RegistrationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
-        if email and User.objects.filter(email=email).exclude(username=username).exists():
-            raise forms.ValidationError(u'Email addresses must be unique.')
+        #TODO validator
+        if email and UserModel.objects.filter(email=email).exclude(username=username).exists():
+            raise forms.ValidationError('Email addresses must be unique.')
         return email
 
     class Meta:
-        model = User
+        model = UserModel
         fields = ('username', 'email', 'password1', 'password2')
 
 
@@ -109,7 +110,8 @@ class LoginForm(AuthenticationForm):
         if username and password:
             # Authenticate using both username and email
             self.user_cache = authenticate(
-                self.request, username=username, password=password)
+                self.request, username=username, password=password
+            )
 
             if self.user_cache is None:
                 raise self.get_invalid_login_error()
