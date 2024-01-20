@@ -28,6 +28,12 @@ login and signup
         <div class="flex justify-center pb-10">
             <button class="btn font-bold px-4 rounded-md">Login</button>
         </div>
+
+        {% for error in form.non_field_errors %}
+        <div class="flex justify-center">
+            <p class="text-red-700 text-xl mb-3">{{ error }}</p>
+        </div>
+        {% endfor %}
     </form>
 </section>
 
