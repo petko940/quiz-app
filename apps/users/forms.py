@@ -1,6 +1,9 @@
 from django import forms
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.core.validators import MinLengthValidator
+
+from apps.users.validators import validate_username, validate_unique_email
 
 UserModel = get_user_model()
 
@@ -8,7 +11,7 @@ UserModel = get_user_model()
 class RegistrationForm(UserCreationForm):
     username = forms.CharField(
         label='',
-        max_length=255,
+        max_length=30,
         widget=forms.TextInput(
             attrs={
                 'placeholder': 'Username',
@@ -17,12 +20,13 @@ class RegistrationForm(UserCreationForm):
                 'id': 'logemail',
                 'name': 'logemail',
             }
-        )
+        ),
+        validators=[validate_username],
     )
 
     email = forms.EmailField(
         label='',
-        max_length=255,
+        max_length=100,
         widget=forms.TextInput(
             attrs={
                 'placeholder': 'Email',
@@ -36,6 +40,7 @@ class RegistrationForm(UserCreationForm):
 
     password1 = forms.CharField(
         label='',
+        max_length=100,
         widget=forms.PasswordInput(
             attrs={
                 'placeholder': 'Password',
@@ -44,7 +49,11 @@ class RegistrationForm(UserCreationForm):
                 'id': 'logpass',
                 'name': 'logpass',
             }
-        )
+        ),
+        validators=[MinLengthValidator(
+            6,
+            "Password must be greater than 6 characters")
+        ],
     )
 
     password2 = forms.CharField(
@@ -64,9 +73,8 @@ class RegistrationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
-        #TODO validator
-        if email and UserModel.objects.filter(email=email).exclude(username=username).exists():
-            raise forms.ValidationError('Email addresses must be unique.')
+        validate_unique_email(email, username)
+
         return email
 
     class Meta:
@@ -103,6 +111,10 @@ class LoginForm(AuthenticationForm):
         )
     )
 
+    error_messages = {
+        'invalid_login': 'Invalid username or password!',
+    }
+
     def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
@@ -110,8 +122,7 @@ class LoginForm(AuthenticationForm):
         if username and password:
             # Authenticate using both username and email
             self.user_cache = authenticate(
-                self.request, username=username, password=password
-            )
+                self.request, username=username, password=password)
 
             if self.user_cache is None:
                 raise self.get_invalid_login_error()
