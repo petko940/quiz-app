@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class Questions(models.Model):
+class PythonQuestions(models.Model):
     question_text = models.CharField(max_length=200)
     option1 = models.CharField(max_length=100)
     option2 = models.CharField(max_length=100)
@@ -16,3 +16,4 @@ class Questions(models.Model):
                                           ('D', 'Option 4')])
 
     objects = models.Manager()
+

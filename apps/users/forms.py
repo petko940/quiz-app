@@ -21,7 +21,7 @@ class RegistrationForm(UserCreationForm):
                 'name': 'logemail',
             }
         ),
-        validators=[validate_username],
+        # validators=[validate_username],
     )
 
     email = forms.EmailField(
@@ -50,10 +50,10 @@ class RegistrationForm(UserCreationForm):
                 'name': 'logpass',
             }
         ),
-        validators=[MinLengthValidator(
-            6,
-            "Password must be greater than 6 characters")
-        ],
+        # validators=[MinLengthValidator(
+        #     6,
+        #     "Password must be greater than 6 characters")
+        # ],
     )
 
     password2 = forms.CharField(
@@ -73,7 +73,7 @@ class RegistrationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
-        validate_unique_email(email, username)
+        # validate_unique_email(email, username)
 
         return email
 
