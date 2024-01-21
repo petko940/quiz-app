@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     const p = document.createElement('p');
                     p.textContent = 'Register for more quizzes!';
-                    p.setAttribute('class', 'text-3xl text-sky-200 text-center mt-10');
+                    p.setAttribute('class', 'text-3xl text-slate-200 text-center mt-10');
                     document.body.appendChild(p);
 
                     Array.from(quizOptions).forEach((option) => {

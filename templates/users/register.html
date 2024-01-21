@@ -14,15 +14,35 @@ login and signup
     <form method="POST" class="">
         {% csrf_token %}
         <h2 class="text-6xl text-center my-10 pt-4">Register</h2>
-        <div class="flex flex-col gap-3 px-14 py-10">
-            {{ form.username }}
-            {{ form.email }}
-            {{ form.password1 }}
-            {{ form.password2 }}
+        <div class="flex flex-col gap-3 px-14 py-3">
+            <div class="relative">
+                {{ form.username }}
+                <span class="absolute top-3 left-6">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+            </div>
+            <div class="relative">
+                {{ form.email }}
+                <span class="absolute top-3 left-6">
+                    <i class="fa-solid fa-at"></i>
+                </span>
+            </div>
+            <div class="relative">
+                {{ form.password1 }}
+                <span class="absolute top-3 left-6">
+                    <i class="fa-solid fa-lock"></i>
+                </span>
+            </div>
+            <div class="relative">
+                {{ form.password2 }}
+                <span class="absolute top-3 left-6">
+                    <!-- <i class="fa-solid fa-lock"></i> -->
+                </span>
+            </div>
 
         </div>
 
-        <div class="flex justify-center pb-10">
+        <div class="flex justify-center pb-10 pt-3">
             <button class="btn font-bold px-4 rounded-md">Register</button>
         </div>
 
