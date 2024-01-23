@@ -91,6 +91,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         })
                     }, 1000);
 
+                    // const button = document.querySelector('button');
+                    //     button.classList.toggle('hidden');
+                    //     button.addEventListener('click', () => {
+                    //         button.classList.toggle('hidden');
+                    //         optionSelected = false;
+                    //         loadQuestion();
+                    //     })
                 } else {
                     if (data['correct_option'] === option.textContent.trim().substring(0, 1)) {
                         option.style.backgroundColor = 'green';
@@ -113,13 +120,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     button.style.display = 'block';
                     button.addEventListener('click', () => {
                         button.style.display = 'none';
+                        document.getElementsByClassName('quiz')[0].innerHTML = '';
+                        // hide option / write text
 
-                        // hide option write text
+                        const h4 = document.createElement('h4');
+                        h4.textContent = 'End';
+                        h4.setAttribute('class', 'text-4xl text-center pt-10 text-white');
 
                         const p = document.createElement('p');
-                        p.textContent = 'End';
-                        p.setAttribute('class', 'text-3xl text-center mt-10');
-                        p.setAttribute('style', 'color: white;');
+                        p.textContent = 'Your result is: ....';
+                        p.setAttribute('class', 'text-3xl text-center pt-10 text-white');
+
+                        document.getElementsByClassName('quiz')[0].appendChild(h4);
                         document.getElementsByClassName('quiz')[0].appendChild(p);
 
                     })
