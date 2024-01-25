@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.quiz.models import PythonQuestions, PythonQuizResult
+from apps.quiz.models import PythonQuestions, QuizResult
 
 
 class SingleQuestionSerializer(serializers.ModelSerializer):
@@ -23,5 +23,5 @@ class GetRightAnswerSerializer(serializers.ModelSerializer):
 
 class PythonQuizResultSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PythonQuizResult
+        model = QuizResult
         fields = '__all__'

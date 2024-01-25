@@ -20,7 +20,7 @@ class PythonQuestions(models.Model):
     objects = models.Manager()
 
 
-class PythonQuizResult(models.Model):
+class QuizResult(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     quiz_name = models.CharField(max_length=50)
     correct_answers = models.IntegerField(default=0)
