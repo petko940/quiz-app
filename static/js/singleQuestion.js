@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 optionSelected = true;
 
                 setTimeout(() => {
-                    if (data['correct_option'] === option.textContent.trim().substring(0, 1)) {
+                    if (data['correct_option'] === option.textContent.trim().substring(3)) {
                         option.style.backgroundColor = 'green';
                     } else {
                         option.style.backgroundColor = 'red';
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     Array.from(quizOptions).forEach((option) => {
                         if (ifWrong) {
                             setTimeout(() => {
-                                if (data['correct_option'] === option.textContent.trim().substring(0, 1)) {
+                                if (data['correct_option'] === option.textContent.trim().substring(3)) {
                                     option.style.backgroundColor = 'green';
                                 }
                             }, 1000);

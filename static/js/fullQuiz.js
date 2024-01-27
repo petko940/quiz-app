@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let currentURL = window.location.pathname;
     currentURL = currentURL.replace(/^\/|\/$/g, '');
+    const currentType = currentURL.split('-')[0];
+    console.log(currentType);
 
     const startButton = document.getElementsByClassName('start')[0];
     const currentQuestionNumber = document.getElementsByClassName('current-question')[0];
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Function to fetch questions from the API
         async function fetchQuestions() {
             try {
-                const response = await fetch(`/api/python-questions/`);
+                const response = await fetch(`/api/${currentType}-questions/`);
                 const data = await response.json();
                 quizQuestions = data;
                 loadQuestion();
@@ -47,27 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Function to load the current question
-        // function loadQuestion() {
-        //     const currentQuestion = quizQuestions[currentQuestionIndex];
-
-        //     const quizQuestionId = currentQuestion.id;
-        //     const quizOptions = document.getElementsByClassName('option');
-
-        //     Array.from(document.getElementsByClassName('option')).forEach((option) => {
-        //         option.style.backgroundColor = '';
-        //     })
-
-        //     quizOptions[0].textContent = `A: ${currentQuestion.option1}`;
-        //     quizOptions[1].textContent = `B: ${currentQuestion.option2}`;
-        //     quizOptions[2].textContent = `C: ${currentQuestion.option3}`;
-        //     quizOptions[3].textContent = `D: ${currentQuestion.option4}`;
-
-        //     const questionElement = document.querySelector('h3');
-        //     questionElement.setAttribute('data-id', quizQuestionId);
-        //     questionElement.textContent = `Question: ${currentQuestion.question_text}`;
-
-        // }
-
         function loadQuestion() {
             if (!isLastQuestion) {
                 const currentQuestion = quizQuestions[currentQuestionIndex];
@@ -116,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 try {
                     const id = quizQuestions[currentQuestionIndex].id;
 
-                    const response = await fetch(`/api/python-questions/${id}`, {})
+                    const response = await fetch(`/api/${currentType}-questions/${id}`, {})
                     const data = await response.json();
 
                     option.style.backgroundColor = 'orange';
@@ -246,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 const tryAgainAHref = document.createElement('a');
                                 tryAgainAHref.textContent = 'Try Again?';
                                 tryAgainAHref.setAttribute('class', 'flex justify-center items-center w-1/6 mt-10 mx-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded');
-                                tryAgainAHref.setAttribute('href', '/python-quiz');
+                                tryAgainAHref.setAttribute('href', `/${currentType}-quiz`);
 
                                 document.getElementsByClassName('quiz')[0].appendChild(h4);
                                 document.getElementsByClassName('quiz')[0].appendChild(p);
