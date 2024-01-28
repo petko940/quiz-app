@@ -66,6 +66,20 @@ login and signup
             {% endif %}
         </div>
     </form>
+
+    <div class="flex flex-wrap justify-center items-center gap-3 mt-2 pb-5 mx-2">
+        <a href="{% url 'social:begin' 'google-oauth2' %}"
+            class="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded-full flex items-center justify-center">
+            <i class="fa-brands fa-google pr-5"></i>
+            Login with Google
+        </a>
+        <a href="{% url 'social:begin' 'facebook' %}"
+            class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-full flex items-center justify-center">
+            <i class="fa-brands fa-facebook pr-5"></i>
+            Login with Facebook
+        </a>
+    </div>
+    
 </section>
 
 {% endblock %}
