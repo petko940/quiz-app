@@ -55,19 +55,37 @@ class LeaderboardView(views.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['leaderboard_python'] = QuizResult.objects.all()
+
+        # Python
         sorted_by_correct_answers_python = (self.queryset.filter(quiz_name='Python', correct_answers__gt=0)
                                             .order_by('-correct_answers', 'finish_time'))
 
-        page = self.request.GET.get('page', 1)
-        paginator = Paginator(sorted_by_correct_answers_python, self.paginate_by)
+        page_python = self.request.GET.get('page_python', 1)
+        paginator_python = Paginator(sorted_by_correct_answers_python, self.paginate_by)
 
         try:
-            python_leaderboard = paginator.page(page)
+            python_leaderboard = paginator_python.page(page_python)
         except PageNotAnInteger:
-            python_leaderboard = paginator.page(1)
+            python_leaderboard = paginator_python.page(1)
         except EmptyPage:
-            python_leaderboard = paginator.page(paginator.num_pages)
+            python_leaderboard = paginator_python.page(paginator_python.num_pages)
 
         context['python_leaderboard'] = python_leaderboard
+
+        # JavaScript
+        sorted_by_correct_answers_js = (self.queryset.filter(quiz_name='Js', correct_answers__gt=0)
+                                        .order_by('-correct_answers', 'finish_time'))
+
+        page_js = self.request.GET.get('page_js', 1)
+        paginator_js = Paginator(sorted_by_correct_answers_js, self.paginate_by)
+
+        try:
+            js_leaderboard = paginator_js.page(page_js)
+        except PageNotAnInteger:
+            js_leaderboard = paginator_js.page(1)
+        except EmptyPage:
+            js_leaderboard = paginator_js.page(paginator_js.num_pages)
+
+        context['javascript_leaderboard'] = js_leaderboard
+
         return context
