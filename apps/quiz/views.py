@@ -89,3 +89,12 @@ class LeaderboardView(views.TemplateView):
         context['javascript_leaderboard'] = js_leaderboard
 
         return context
+
+
+class RecentQuizzesView(views.TemplateView):
+    template_name = 'quiz/recent-quizzes.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['recent_quizzes'] = QuizResult.objects.all()[10:]
+        return context
