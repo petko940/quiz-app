@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Latest Quizzes{% endblock %}
+
+{% block navigation %}
+{% endblock %}
+
+{% block content %}
+
+
+<h1 class="text-3xl text-lime-200 text-center mt-10 mb-3">Latest Quizzes</h1>
+<!-- 
+{% for quiz in recent_quizzes %}
+<h2>{{ quiz.user.username }} {{ quiz.quiz_name }} {{ quiz.correct_answers }}/15 done for {{ quiz.finish_time }}</h2>
+{% endfor %} -->
+
+<table class="table-auto w-5/6 mx-auto">
+    <thead>
+        <tr class="bg-slate-500 border-b-2 border-gray-600">
+            <th class="px-4 py-2 text-neutral-100">Username</th>
+            <th class="px-4 py-2 text-neutral-100">Quiz Name</th>
+            <th class="px-4 py-2 text-neutral-100">Correct Answers</th>
+            <th class="px-4 py-2 text-neutral-100">Finish Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for quiz in recent_quizzes reversed %}
+        <tr class="bg-gray-400 border">
+            <td class="px-4 py-2 text-center text-stone-800">{{ quiz.user.username }}</td>
+            <td class="px-4 py-2 text-center text-stone-800">{{ quiz.quiz_name }}</td>
+            <td class="px-4 py-2 text-center text-stone-800">{{ quiz.correct_answers }} / 15</td>
+            <td class="px-4 py-2 text-center text-stone-800">{{ quiz.finish_time }} seconds</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
