@@ -1,8 +1,8 @@
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth import logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic as views, View
 
@@ -65,8 +65,11 @@ class ProfileView(LoginRequiredMixin, views.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['best_results'] = (QuizResult.objects.filter(user=self.get_object()).
-                                   order_by('quiz_name', '-correct_answers', 'finish_time')[:7])
+        context['best_results_python'] = (QuizResult.objects.filter(user=self.get_object(), quiz_name='Python').
+                                          order_by('quiz_name', '-correct_answers', 'finish_time')[:7])
+
+        context['best_results_js'] = (QuizResult.objects.filter(user=self.get_object(), quiz_name='Js').
+                                      order_by('quiz_name', '-correct_answers', 'finish_time')[:7])
         return context
 
     def get(self, request, *args, **kwargs):
