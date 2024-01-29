@@ -12,7 +12,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             try {
-                const response = await fetch(`/api/${quizQuestionId}`, {});
+                const headers = {
+                    'X-JSToken': 'simple_token',
+                    'Content-Type': 'application/json',
+                };
+                const response = await fetch(`/api/${quizQuestionId}`, { headers });
                 const data = await response.json();
             
                 option.style.backgroundColor = 'orange';

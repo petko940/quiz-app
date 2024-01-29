@@ -12,9 +12,12 @@ from apps.quiz.api.serializers import (SingleQuestionSerializer,
                                        QuizResultSerializer,
                                        JSQuestionsSerializer,
                                        GetRightJSAnswerSerializer)
+from apps.quiz.permissions import JsTokenPermission
 
 
 class SingleQuestionAPIView(APIView):
+    permission_classes = [JsTokenPermission]
+
     def get(self, request, pk, *args, **kwargs):
         try:
             # TODO: add dbs
@@ -30,6 +33,7 @@ class SingleQuestionAPIView(APIView):
 
 
 class BaseQuestionAPIView(APIView):
+    permission_classes = [JsTokenPermission]
     model = None  # To be defined in subclasses
 
     def get_object(self, pk):

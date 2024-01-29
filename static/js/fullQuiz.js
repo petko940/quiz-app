@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentURL = window.location.pathname;
     currentURL = currentURL.replace(/^\/|\/$/g, '');
     const currentType = currentURL.split('-')[0];
-    console.log(currentType);
 
     const startButton = document.getElementsByClassName('start')[0];
     const currentQuestionNumber = document.getElementsByClassName('current-question')[0];
@@ -39,7 +38,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // Function to fetch questions from the API
         async function fetchQuestions() {
             try {
-                const response = await fetch(`/api/${currentType}-questions/`);
+                const headers = {
+                    'X-JSToken': 'simple_token',
+                    'Content-Type': 'application/json',
+                };
+                const response = await fetch(`/api/${currentType}-questions/`, { headers });
                 const data = await response.json();
                 quizQuestions = data;
                 loadQuestion();
@@ -95,9 +98,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 optionSelected = true;
 
                 try {
+                    const headers = {
+                        'X-JSToken': 'simple_token',
+                        'Content-Type': 'application/json',
+                    };
                     const id = quizQuestions[currentQuestionIndex].id;
 
-                    const response = await fetch(`/api/${currentType}-questions/${id}`, {})
+                    const response = await fetch(`/api/${currentType}-questions/${id}`, { headers });
                     const data = await response.json();
 
                     option.style.backgroundColor = 'orange';
@@ -195,7 +202,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json',
-                                        'X-CSRFToken': getCSRFToken()
+                                        'X-CSRFToken': getCSRFToken(),
+                                        'X-JSToken': 'simple_token'
                                     },
                                     body: JSON.stringify({
                                         'finish_time': timerElement.textContent.split(' seconds')[0],
