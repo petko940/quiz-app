@@ -1,16 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     const quizOptions = document.getElementsByClassName('option');
-    const rightAnswer = document.getElementsByClassName('right-answer')[0];
-    let optionSelected = false;
-    let ifWrong = false;
 
     Array.from(quizOptions).forEach((option) => {
         option.addEventListener('click', async () => {
-            if (optionSelected) {
-                return;
-            }
-
             option.style.backgroundColor = 'orange';
 
             Array.from(quizOptions).forEach((option) => {
@@ -19,21 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
             optionSelected = true;
 
             setTimeout(() => {
-                if (option.textContent === rightAnswer.textContent) {
-                    option.style.backgroundColor = 'green';
-                } else {
-                    option.style.backgroundColor = 'red';
-                    ifWrong = true;
-                }
-
                 Array.from(quizOptions).forEach((option) => {
-                    if (ifWrong) {
-                        setTimeout(() => {
-                            if (option.textContent === rightAnswer.textContent) {
-                                option.style.backgroundColor = 'green';
-                            }
-                        }, 1000);
-                    }
+                    option.style.backgroundColor = 'darkred';
                 })
                 
                 const section = document.querySelector('section');
@@ -42,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 h1.setAttribute('class', 'text-3xl text-white text-center mt-10');
                 section.appendChild(h1);
             
-            }, 1000);
+            }, 1500);
             setTimeout(() => {
                 window.location.href = '/';
             }, 6500);
