@@ -21,6 +21,7 @@ class RegistrationForm(UserCreationForm):
                 'name': 'logemail',
             }
         ),
+        # TODO: add validators
         # validators=[validate_username],
     )
 
@@ -130,3 +131,18 @@ class LoginForm(AuthenticationForm):
         self.confirm_login_allowed(self.user_cache)
 
         return self.cleaned_data
+
+
+class ChangeUsernameForm(forms.ModelForm):
+    class Meta:
+        model = UserModel
+        fields = ['username']
+        widgets = {
+            'username': forms.TextInput(
+                attrs={
+                    'placeholder': 'Username',
+                    'class': 'text-center p-1',
+                    'autocomplete': 'off',
+                }
+            )
+        }
