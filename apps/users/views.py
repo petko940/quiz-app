@@ -7,7 +7,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic as views, View
 
 from apps.quiz.models import QuizResult
-from apps.users.forms import RegistrationForm, LoginForm
+from apps.users.forms import RegistrationForm, LoginForm, ChangeUsernameForm
 from django.contrib.auth import get_user_model, login, authenticate
 
 UserModel = get_user_model()
@@ -56,21 +56,9 @@ class Logout(LoginRequiredMixin, View):
         return redirect('home')
 
 
-class ProfileView(LoginRequiredMixin, views.DetailView):
-    model = UserModel
-    template_name = 'users/profile.html'
-
+class RedirectToCurrentUserMixin:
     slug_field = 'username'
     slug_url_kwarg = 'username'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['best_results_python'] = (QuizResult.objects.filter(user=self.get_object(), quiz_name='Python').
-                                          order_by('quiz_name', '-correct_answers', 'finish_time')[:7])
-
-        context['best_results_js'] = (QuizResult.objects.filter(user=self.get_object(), quiz_name='Js').
-                                      order_by('quiz_name', '-correct_answers', 'finish_time')[:7])
-        return context
 
     def get(self, request, *args, **kwargs):
         try:
@@ -81,3 +69,45 @@ class ProfileView(LoginRequiredMixin, views.DetailView):
                 return redirect(reverse('profile', kwargs={'username': str(request.user.username)}))
         except Http404:
             return redirect(reverse('profile', kwargs={'username': str(request.user.username)}))
+
+
+class ProfileView(LoginRequiredMixin, RedirectToCurrentUserMixin, views.DetailView):
+    model = UserModel
+    template_name = 'users/profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['best_results_python'] = (QuizResult.objects.filter(user=self.get_object(), quiz_name='Python').
+                                          order_by('quiz_name', '-correct_answers', 'finish_time')[:7])
+
+        context['best_results_js'] = (QuizResult.objects.filter(user=self.get_object(), quiz_name='Js').
+                                      order_by('quiz_name', '-correct_answers', 'finish_time')[:7])
+        return context
+
+
+class SettingProfileView(LoginRequiredMixin, RedirectToCurrentUserMixin, views.DetailView):
+    template_name = 'users/settings.html'
+    model = UserModel
+
+
+class ChangeUsernameView(LoginRequiredMixin, RedirectToCurrentUserMixin, views.UpdateView):
+    model = UserModel
+    template_name = 'users/change_username.html'
+    form_class = ChangeUsernameForm
+    success_url = reverse_lazy('profile')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_initial(self):
+        initial = super().get_initial()
+        # Set 'username' to an empty string to start with an empty field
+        initial['username'] = ''
+        return initial
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return response
+
+    def get_success_url(self):
+        return reverse_lazy('profile', kwargs={'username': self.object.username})
