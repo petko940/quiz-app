@@ -39,7 +39,9 @@
                 </a>
             </li>
             <li class="underline-on-hover">
-                <a href="/" class="block text-center p-4 text-gray-100">test</a>
+                <a href="{% url 'about' %}" class="block text-center p-4 text-gray-100">
+                    About
+                </a>
             </li>
         </ul>
 
@@ -64,7 +66,7 @@
                     Log in
                 </a>
             </li>
-            <li class="bg-orange-700 rounded">
+            <li class="bg-orange-700 rounded hover:bg-[darkcyan] transition-all duration-300">
                 <a href="{% url 'register' %}" class="block text-center p-4 text-gray-100">
                     Register
                 </a>
