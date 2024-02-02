@@ -5,7 +5,12 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from apps.quiz.models import PythonQuestions, QuizResult, JSQuestions, HTMLCSSQuestions
+from apps.quiz.models import (PythonQuestions,
+                              JSQuestions,
+                              HTMLCSSQuestions,
+                              QuizResult
+                              )
+
 from apps.quiz.api.serializers import (SingleQuestionSerializer,
                                        PythonQuestionsSerializer,
                                        GetRightPythonAnswerSerializer,

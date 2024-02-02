@@ -1,7 +1,6 @@
 import random
 
 from rest_framework import serializers
-
 from apps.quiz.models import PythonQuestions, QuizResult, JSQuestions, HTMLCSSQuestions
 
 

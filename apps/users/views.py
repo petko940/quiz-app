@@ -7,7 +7,13 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic as views, View
 
 from apps.quiz.models import QuizResult
-from apps.users.forms import RegistrationForm, LoginForm, ChangeUsernameForm, ChangeEmailForm, ChangePasswordForm
+from apps.users.forms import (RegistrationForm,
+                              LoginForm,
+                              ChangeUsernameForm,
+                              ChangeEmailForm,
+                              ChangePasswordForm
+                              )
+
 from django.contrib.auth import get_user_model, login, authenticate
 
 UserModel = get_user_model()

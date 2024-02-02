@@ -7,7 +7,9 @@ from django.views import generic as views
 from apps.quiz.mixins import LogoutRequiredMixin
 from apps.quiz.models import (PythonQuestions,
                               JSQuestions,
-                              QuizResult, HTMLCSSQuestions)
+                              QuizResult,
+                              HTMLCSSQuestions
+                              )
 
 
 # Create your views here.
