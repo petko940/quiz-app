@@ -2,7 +2,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let currentURL = window.location.pathname;
     currentURL = currentURL.replace(/^\/|\/$/g, '');
-    const currentType = currentURL.split('-')[0];
+    let currentType = currentURL.split('-')[0];
+    
+    if (currentType === 'html') {
+        currentType = 'html-css';
+    }
 
     const startButton = document.getElementsByClassName('start')[0];
     const currentQuestionNumber = document.getElementsByClassName('current-question')[0];
