@@ -17,11 +17,18 @@ class BaseQuestion(models.Model):
 
 
 class PythonQuestions(BaseQuestion):
-    pass
+    def __str__(self):
+        return "Python"
 
 
 class JSQuestions(BaseQuestion):
-    pass
+    def __str__(self):
+        return "JavaScript"
+
+
+class HTMLCSSQuestions(BaseQuestion):
+    def __str__(self):
+        return "HTML/CSS"
 
 
 class QuizResult(models.Model):

@@ -7,7 +7,7 @@ from django.views import generic as views
 from apps.quiz.mixins import LogoutRequiredMixin
 from apps.quiz.models import (PythonQuestions,
                               JSQuestions,
-                              QuizResult)
+                              QuizResult, HTMLCSSQuestions)
 
 
 # Create your views here.
@@ -16,7 +16,7 @@ class QuizView(LogoutRequiredMixin, views.TemplateView):
 
     @staticmethod
     def get_question_model():
-        question_models = [PythonQuestions, JSQuestions, ]
+        question_models = [PythonQuestions, JSQuestions, HTMLCSSQuestions]
         return random.choice(question_models)
 
     def get_context_data(self, **kwargs):
@@ -45,6 +45,16 @@ class JSQuizView(LoginRequiredMixin, views.TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['questions'] = JSQuestions.objects.all()
+        return context
+
+
+class HTMLCSSQuizView(LoginRequiredMixin, views.TemplateView):
+    template_name = 'quiz/html-css-quiz.html'
+    login_url = 'home'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['questions'] = HTMLCSSQuestions.objects.all()
         return context
 
 
@@ -88,6 +98,7 @@ class LeaderboardView(views.TemplateView):
 
         context['javascript_leaderboard'] = js_leaderboard
 
+        # TODO HTML/CSS
         return context
 
 

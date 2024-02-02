@@ -2,7 +2,7 @@ import random
 
 from rest_framework import serializers
 
-from apps.quiz.models import PythonQuestions, QuizResult, JSQuestions
+from apps.quiz.models import PythonQuestions, QuizResult, JSQuestions, HTMLCSSQuestions
 
 
 class SingleQuestionSerializer(serializers.ModelSerializer):
@@ -40,7 +40,21 @@ class GetRightJSAnswerSerializer(serializers.ModelSerializer):
         fields = 'correct_option',
 
 
-# TODO: ???
+# --------
+
+# HTML and CSS
+class HTMLCSSQuestionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HTMLCSSQuestions
+        exclude = 'correct_option',
+
+
+class GetRightHTMLCSSAnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HTMLCSSQuestions
+        fields = 'correct_option',
+
+
 class QuizResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuizResult

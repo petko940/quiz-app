@@ -5,13 +5,15 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from apps.quiz.models import PythonQuestions, QuizResult, JSQuestions
+from apps.quiz.models import PythonQuestions, QuizResult, JSQuestions, HTMLCSSQuestions
 from apps.quiz.api.serializers import (SingleQuestionSerializer,
                                        PythonQuestionsSerializer,
                                        GetRightPythonAnswerSerializer,
                                        QuizResultSerializer,
                                        JSQuestionsSerializer,
-                                       GetRightJSAnswerSerializer)
+                                       GetRightJSAnswerSerializer,
+                                       HTMLCSSQuestionsSerializer,
+                                       GetRightHTMLCSSAnswerSerializer)
 from apps.quiz.permissions import JsTokenPermission
 
 
@@ -73,6 +75,24 @@ class GetRightJSAnswerAPIView(BaseQuestionAPIView):
     def get(self, request, pk, *args, **kwargs):
         question = self.get_object(pk)
         serializer = GetRightJSAnswerSerializer(question)
+        return Response(serializer.data, status=200)
+
+
+# HTML CSS
+class HTMLCSSQuestionsAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        count = 1
+        questions = set(random.sample(list(HTMLCSSQuestions.objects.all()), count))
+        serializer = HTMLCSSQuestionsSerializer(questions, many=True)
+        return Response(serializer.data)
+
+
+class GetRightHTMLCSSAnswerAPIView(BaseQuestionAPIView):
+    model = HTMLCSSQuestions
+
+    def get(self, request, pk, *args, **kwargs):
+        question = self.get_object(pk)
+        serializer = GetRightHTMLCSSAnswerSerializer(question)
         return Response(serializer.data, status=200)
 
 

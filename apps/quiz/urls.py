@@ -6,20 +6,22 @@ from apps.quiz.api.views import (SingleQuestionAPIView,
                                  SaveQuizResultAPIView,
                                  GetUsernameAPIView,
                                  JSQuestionsAPIView,
-                                 GetRightJSAnswerAPIView,
+                                 GetRightJSAnswerAPIView, HTMLCSSQuestionsAPIView,
                                  )
 
 from apps.quiz.views import (QuizView,
                              PythonQuizView,
                              JSQuizView,
+                             HTMLCSSQuizView,
                              LeaderboardView,
-                             RecentQuizzesView
+                             RecentQuizzesView,
                              )
 
 urlpatterns = [
     path('single-question/', QuizView.as_view(), name='single-question'),
     path('python-quiz/', PythonQuizView.as_view(), name='python-quiz'),
     path('js-quiz', JSQuizView.as_view(), name='js-quiz'),
+    path('html-css-quiz', HTMLCSSQuizView.as_view(), name='html-css-quiz'),
 
     # leaderboard
     path('leaderboard/', LeaderboardView.as_view(), name='leaderboard'),
@@ -35,6 +37,10 @@ urlpatterns = [
 
     path('api/js-questions/', JSQuestionsAPIView.as_view(), name='api-js-questions'),
     path('api/js-questions/<int:pk>/', GetRightJSAnswerAPIView.as_view(), name='api-js-get-right-answer'),
+
+    path('api/html-css-questions/', HTMLCSSQuestionsAPIView.as_view(), name='api-html-css-questions'),
+    path('api/html-css-questions/<int:pk>/', GetRightJSAnswerAPIView.as_view(), name='api-html-css-get-right-answer'),
+
 
     path('api/save-quiz-result/', SaveQuizResultAPIView.as_view(), name='api-save-quiz-result'),
     path('api/get-username', GetUsernameAPIView.as_view(), name='api-get-username'),
