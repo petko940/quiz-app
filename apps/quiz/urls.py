@@ -6,7 +6,9 @@ from apps.quiz.api.views import (SingleQuestionAPIView,
                                  SaveQuizResultAPIView,
                                  GetUsernameAPIView,
                                  JSQuestionsAPIView,
-                                 GetRightJSAnswerAPIView, HTMLCSSQuestionsAPIView,
+                                 GetRightJSAnswerAPIView,
+                                 HTMLCSSQuestionsAPIView,
+                                 GetRightHTMLCSSAnswerAPIView,
                                  )
 
 from apps.quiz.views import (QuizView,
@@ -39,7 +41,7 @@ urlpatterns = [
     path('api/js-questions/<int:pk>/', GetRightJSAnswerAPIView.as_view(), name='api-js-get-right-answer'),
 
     path('api/html-css-questions/', HTMLCSSQuestionsAPIView.as_view(), name='api-html-css-questions'),
-    path('api/html-css-questions/<int:pk>/', GetRightJSAnswerAPIView.as_view(), name='api-html-css-get-right-answer'),
+    path('api/html-css-questions/<int:pk>/', GetRightHTMLCSSAnswerAPIView.as_view(), name='api-html-css-get-right-answer'),
 
 
     path('api/save-quiz-result/', SaveQuizResultAPIView.as_view(), name='api-save-quiz-result'),
