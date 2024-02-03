@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.quiz.api.views import (SingleQuestionAPIView,
+from apps.quiz.api.views import (OneQuestionAPIView,
                                  PythonQuestionsAPIView,
                                  GetRightPythonAnswerAPIView,
                                  SaveQuizResultAPIView,
@@ -11,7 +11,7 @@ from apps.quiz.api.views import (SingleQuestionAPIView,
                                  GetRightHTMLCSSAnswerAPIView,
                                  )
 
-from apps.quiz.views import (QuizView,
+from apps.quiz.views import (OneQuestionView,
                              PythonQuizView,
                              JSQuizView,
                              HTMLCSSQuizView,
@@ -20,7 +20,7 @@ from apps.quiz.views import (QuizView,
                              )
 
 urlpatterns = [
-    path('single-question/', QuizView.as_view(), name='single-question'),
+    path('single-question/', OneQuestionView.as_view(), name='single-question'),
     path('python-quiz/', PythonQuizView.as_view(), name='python-quiz'),
     path('js-quiz', JSQuizView.as_view(), name='js-quiz'),
     path('html-css-quiz', HTMLCSSQuizView.as_view(), name='html-css-quiz'),
@@ -32,7 +32,7 @@ urlpatterns = [
     path('recent-quizzes/', RecentQuizzesView.as_view(), name='recent-quizzes'),
 
     # apis
-    path('api/<int:pk>/', SingleQuestionAPIView.as_view(), name='api-single-question'),
+    path('api/<int:pk>/', OneQuestionAPIView.as_view(), name='api-single-question'),
 
     path('api/python-questions/', PythonQuestionsAPIView.as_view(), name='api-python-questions'),
     path('api/python-questions/<int:pk>/', GetRightPythonAnswerAPIView.as_view(), name='api-python-get-right-answer'),

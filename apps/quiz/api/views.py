@@ -22,7 +22,7 @@ from apps.quiz.api.serializers import (SingleQuestionSerializer,
 from apps.quiz.permissions import JsTokenPermission
 
 
-class SingleQuestionAPIView(APIView):
+class OneQuestionAPIView(APIView):
     permission_classes = [JsTokenPermission]
 
     def get(self, request, pk, *args, **kwargs):

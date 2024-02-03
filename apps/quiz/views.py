@@ -13,7 +13,7 @@ from apps.quiz.models import (PythonQuestions,
 
 
 # Create your views here.
-class QuizView(LogoutRequiredMixin, views.TemplateView):
+class OneQuestionView(LogoutRequiredMixin, views.TemplateView):
     template_name = 'quiz/single-question.html'
 
     @staticmethod
