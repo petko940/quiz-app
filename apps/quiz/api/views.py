@@ -27,8 +27,8 @@ class OneQuestionAPIView(APIView):
 
     def get(self, request, pk, *args, **kwargs):
         try:
-            # TODO: add dbs
-            question = PythonQuestions.objects.get(pk=pk)
+            question_model = self.get_question_model(request)
+            question = question_model.objects.get(pk=pk)
         except PythonQuestions.DoesNotExist:
             question = None
 
@@ -37,6 +37,17 @@ class OneQuestionAPIView(APIView):
             return Response(serializer.data)
 
         return Response()
+
+    @staticmethod
+    def get_question_model(request):
+        question_type = request.query_params.get('type')
+        question_models = {
+            'pythonquestions': PythonQuestions,
+            'jsquestions': JSQuestions,
+            'htmlcssquestions': HTMLCSSQuestions,
+        }
+
+        return question_models[question_type]
 
 
 class BaseQuestionAPIView(APIView):

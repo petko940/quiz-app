@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     'X-JSToken': 'simple_token',
                     'Content-Type': 'application/json',
                 };
-                const response = await fetch(`/api/${quizQuestionId}`, { headers });
+                const questionType = document.querySelector('h2').getAttribute('data-type');
+
+                const response = await fetch(`/api/${quizQuestionId}?type=${questionType}`, { headers });
                 const data = await response.json();
             
                 option.style.backgroundColor = 'orange';

@@ -2,6 +2,7 @@ import random
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.shortcuts import get_object_or_404
 from django.views import generic as views
 
 from apps.quiz.mixins import LogoutRequiredMixin
@@ -23,10 +24,14 @@ class OneQuestionView(LogoutRequiredMixin, views.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['question'] = random.choice(PythonQuestions.objects.all())
-        question_model = self.get_question_model()
 
-        context['question'] = random.choice(question_model.objects.all())
+        question_model = self.get_question_model()
+        question = get_object_or_404(question_model,
+                                     pk=random.choice(question_model.objects.values_list('pk', flat=True)))
+
+        context['question'] = question
+        context['question_type'] = question_model.__name__.lower()
+
         return context
 
 
