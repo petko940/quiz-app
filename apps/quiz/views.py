@@ -74,7 +74,8 @@ class LeaderboardView(views.TemplateView):
         context = super().get_context_data(**kwargs)
 
         # Python
-        sorted_by_correct_answers_python = (self.queryset.filter(quiz_name='Python', correct_answers__gt=0)
+        sorted_by_correct_answers_python = (self.queryset
+                                            .filter(quiz_name='Python', correct_answers__gt=0)
                                             .order_by('-correct_answers', 'finish_time'))
 
         page_python = self.request.GET.get('page_python', 1)
@@ -87,10 +88,12 @@ class LeaderboardView(views.TemplateView):
         except EmptyPage:
             python_leaderboard = paginator_python.page(paginator_python.num_pages)
 
+        context['python_leaderboard_next'] = python_leaderboard[3:]
         context['python_leaderboard'] = python_leaderboard
 
         # JavaScript
-        sorted_by_correct_answers_js = (self.queryset.filter(quiz_name='JavaScript', correct_answers__gt=0)
+        sorted_by_correct_answers_js = (self.queryset
+                                        .filter(quiz_name='JavaScript', correct_answers__gt=0)
                                         .order_by('-correct_answers', 'finish_time'))
 
         page_js = self.request.GET.get('page_js', 1)
@@ -103,9 +106,11 @@ class LeaderboardView(views.TemplateView):
         except EmptyPage:
             js_leaderboard = paginator_js.page(paginator_js.num_pages)
 
+        context['javascript_leaderboard_next'] = js_leaderboard[3:]
         context['javascript_leaderboard'] = js_leaderboard
 
-        sorted_by_correct_answers_html_css = (self.queryset.filter(quiz_name='HTML/CSS', correct_answers__gt=0)
+        sorted_by_correct_answers_html_css = (self.queryset
+                                              .filter(quiz_name='HTML/CSS', correct_answers__gt=0)
                                               .order_by('-correct_answers', 'finish_time'))
 
         page_html_css = self.request.GET.get('page_html_css', 1)
@@ -118,6 +123,7 @@ class LeaderboardView(views.TemplateView):
         except EmptyPage:
             html_css_leaderboard = paginator_html_css.page(paginator_html_css.num_pages)
 
+        context['html_css_leaderboard_next'] = html_css_leaderboard[3:]
         context['html_css_leaderboard'] = html_css_leaderboard
 
         return context

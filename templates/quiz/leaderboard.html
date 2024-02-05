@@ -21,7 +21,28 @@ Leaderboard
     <div id="python-leaderboard" class="w-3/12 text-center">
         <h1 class="text-2xl text-white bg-gradient-to-r from-cyan-500 to-orange-500 rounded-sm">Python</h1>
 
-        {% for x in python_leaderboard %}
+        {% if python_leaderboard.0 %}
+        <h3 class="text-xl text-white">
+            <i class="fa-solid fa-medal text-[#FFD700]"></i>{{ python_leaderboard.0.user }} -
+            {{ python_leaderboard.0.correct_answers }}/15 - Time: {{ python_leaderboard.0.finish_time }}s
+        </h3>
+        {% endif %}
+
+        {% if python_leaderboard.1 %}
+        <h3 class="text-xl text-white">
+            <i class="fa-solid fa-medal text-[#D3D3D3]"></i>{{ python_leaderboard.1.user }} -
+            {{ python_leaderboard.1.correct_answers }}/15 - Time: {{ python_leaderboard.1.finish_time }}s
+        </h3>
+        {% endif %}
+
+        {% if python_leaderboard.2 %}
+        <h3 class="text-xl text-white">
+            <i class="fa-solid fa-medal text-[#CD7F32]"></i>{{ python_leaderboard.2.user }} -
+            {{ python_leaderboard.2.correct_answers }}/15 - Time: {{ python_leaderboard.2.finish_time }}s
+        </h3>
+        {% endif %}
+
+        {% for x in python_leaderboard_next %}
         <h3 class="text-xl text-white">
             {{ x.user }} - {{ x.correct_answers }}/15 - Time: {{ x.finish_time }}s
         </h3>
@@ -33,7 +54,8 @@ Leaderboard
             <span class="">
                 {% if python_leaderboard.has_previous %}
                 <a href="?page_python=1"><i class="fa-solid fa-angles-left"></i></a>
-                <a href="?page_python={{ python_leaderboard.previous_page_number }}"><i class="fa-solid fa-angle-left"></i></a>
+                <a href="?page_python={{ python_leaderboard.previous_page_number }}"><i
+                        class="fa-solid fa-angle-left"></i></a>
                 {% endif %}
 
                 <span class="">
@@ -41,7 +63,8 @@ Leaderboard
                 </span>
 
                 {% if python_leaderboard.has_next %}
-                <a href="?page_python={{ python_leaderboard.next_page_number }}"><i class="fa-solid fa-angle-right"></i></a>
+                <a href="?page_python={{ python_leaderboard.next_page_number }}"><i
+                        class="fa-solid fa-angle-right"></i></a>
                 <a href="?page_python={{ python_leaderboard.paginator.num_pages }}"><i
                         class="fa-solid fa-angles-right"></i></a>
                 {% endif %}
@@ -52,7 +75,28 @@ Leaderboard
     <div id="javascript-leaderboard" class="w-3/12 text-center">
         <h1 class="text-2xl text-white bg-gradient-to-r from-yellow-600 to-yellow-600 rounded-sm">JavaScript</h1>
 
-        {% for x in javascript_leaderboard %}
+        {% if javascript_leaderboard.0 %}
+        <h3 class="text-xl text-white">
+            <i class="fa-solid fa-medal text-[#FFD700]"></i>{{ javascript_leaderboard.0.user }} -
+            {{ javascript_leaderboard.0.correct_answers }}/15 - Time: {{ javascript_leaderboard.0.finish_time }}s
+        </h3>
+        {% endif %}
+
+        {% if javascript_leaderboard.1 %}
+        <h3 class="text-xl text-white">
+            <i class="fa-solid fa-medal text-[#D3D3D3]"></i>{{ javascript_leaderboard.1.user }} -
+            {{ javascript_leaderboard.1.correct_answers }}/15 - Time: {{ javascript_leaderboard.1.finish_time }}s
+        </h3>
+        {% endif %}
+
+        {% if javascript_leaderboard.2 %}
+        <h3 class="text-xl text-white">
+            <i class="fa-solid fa-medal text-[#CD7F32]"></i>{{ javascript_leaderboard.2.user }} -
+            {{ javascript_leaderboard.2.correct_answers }}/15 - Time: {{ javascript_leaderboard.2.finish_time }}s
+        </h3>
+        {% endif %}
+
+        {% for x in javascript_leaderboard_next %}
         <h3 class="text-xl text-white">
             {{ x.user }} - {{ x.correct_answers }}/15 - Time: {{ x.finish_time }}s
         </h3>
@@ -64,7 +108,8 @@ Leaderboard
             <span class="">
                 {% if javascript_leaderboard.has_previous %}
                 <a href="?page_js=1"><i class="fa-solid fa-angles-left"></i></a>
-                <a href="?page_js={{ javascript_leaderboard.previous_page_number }}"><i class="fa-solid fa-angle-left"></i></a>
+                <a href="?page_js={{ javascript_leaderboard.previous_page_number }}"><i
+                        class="fa-solid fa-angle-left"></i></a>
                 {% endif %}
 
                 <span class="">
@@ -72,7 +117,8 @@ Leaderboard
                 </span>
 
                 {% if javascript_leaderboard.has_next %}
-                <a href="?page_js={{ javascript_leaderboard.next_page_number }}"><i class="fa-solid fa-angle-right"></i></a>
+                <a href="?page_js={{ javascript_leaderboard.next_page_number }}"><i
+                        class="fa-solid fa-angle-right"></i></a>
                 <a href="?page_js={{ javascript_leaderboard.paginator.num_pages }}"><i
                         class="fa-solid fa-angles-right"></i></a>
                 {% endif %}
@@ -83,7 +129,28 @@ Leaderboard
     <div id="html-css-leaderboard" class="w-3/12 text-center">
         <h1 class="text-2xl text-white bg-gradient-to-r from-orange-600 to-blue-600 rounded-sm">HTML/CSS</h1>
 
-        {% for x in html_css_leaderboard %}
+        {% if html_css_leaderboard.0 %}
+        <h3 class="text-xl text-white">
+            <i class="fa-solid fa-medal text-[#FFD700]"></i>{{ html_css_leaderboard.0.user }} -
+            {{ html_css_leaderboard.0.correct_answers }}/15 - Time: {{ html_css_leaderboard.0.finish_time }}s
+        </h3>
+        {% endif %}
+
+        {% if html_css_leaderboard.1 %}
+        <h3 class="text-xl text-white">
+            <i class="fa-solid fa-medal text-[#D3D3D3]"></i>{{ html_css_leaderboard.1.user }} -
+            {{ html_css_leaderboard.1.correct_answers }}/15 - Time: {{ html_css_leaderboard.1.finish_time }}s
+        </h3>
+        {% endif %}
+
+        {% if html_css_leaderboard.2 %}
+        <h3 class="text-xl text-white">
+            <i class="fa-solid fa-medal text-[#CD7F32]"></i>{{ html_css_leaderboard.2.user }} -
+            {{ html_css_leaderboard.2.correct_answers }}/15 - Time: {{ html_css_leaderboard.2.finish_time }}s
+        </h3>
+        {% endif %}
+
+        {% for x in html_css_leaderboard_next %}
         <h3 class="text-xl text-white">
             {{ x.user }} - {{ x.correct_answers }}/15 - Time: {{ x.finish_time }}s
         </h3>
@@ -95,7 +162,8 @@ Leaderboard
             <span class="">
                 {% if html_css_leaderboard.has_previous %}
                 <a href="?html_css_leaderboard=1"><i class="fa-solid fa-angles-left"></i></a>
-                <a href="?html_css_leaderboard={{ html_css_leaderboard.previous_page_number }}"><i class="fa-solid fa-angle-left"></i></a>
+                <a href="?html_css_leaderboard={{ html_css_leaderboard.previous_page_number }}"><i
+                        class="fa-solid fa-angle-left"></i></a>
                 {% endif %}
 
                 <span class="">
@@ -103,7 +171,8 @@ Leaderboard
                 </span>
 
                 {% if html_css_leaderboard.has_next %}
-                <a href="?html_css_leaderboard={{ html_css_leaderboard.next_page_number }}"><i class="fa-solid fa-angle-right"></i></a>
+                <a href="?html_css_leaderboard={{ html_css_leaderboard.next_page_number }}"><i
+                        class="fa-solid fa-angle-right"></i></a>
                 <a href="?html_css_leaderboard={{ html_css_leaderboard.paginator.num_pages }}"><i
                         class="fa-solid fa-angles-right"></i></a>
                 {% endif %}
