@@ -10,9 +10,9 @@
 {% block content %}
 
 
-<h1 class="text-3xl text-lime-200 text-center mt-10 mb-3">Latest Quizzes</h1>
+<h1 class="text-4xl text-lime-200 font-medium flex justify-center my-5">Latest Quizzes</h1>
 
-{% if all_quizzes <= 10 %}
+{% if all_quizzes >= 10 %}
 <h2 class="text-2xl text-lime-50 text-center">Last 10 quizzes out of {{ all_quizzes }} total</h2>
 {% endif %}
 
