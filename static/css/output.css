@@ -1390,6 +1390,14 @@ video {
     width: 100%;
   }
 
+  .max-lg\:w-4 {
+    width: 1rem;
+  }
+
+  .max-lg\:w-4\/5 {
+    width: 80%;
+  }
+
   .max-lg\:text-stone-100 {
     --tw-text-opacity: 1;
     color: rgb(245 245 244 / var(--tw-text-opacity));
