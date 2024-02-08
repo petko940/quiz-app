@@ -138,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     Array.from(document.getElementsByClassName('option')).forEach((option) => {
                         option.style.cursor = 'default';
                     })
-
                     currentQuestionIndex++;
                     if (currentQuestionIndex < quizQuestions.length) {
                         if (currentQuestionIndex === quizQuestions.length) {
@@ -160,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                         if (data['correct_option'] === option.textContent.trim().substring(3)) {
                                             option.style.backgroundColor = 'green';
                                         }
-                                        const button = document.querySelector('button');
+                                        const button = document.querySelectorAll('button')[1];
                                         button.style.display = 'block';
                                         button.addEventListener('click', () => {
                                             button.style.display = 'none';
@@ -169,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                         })
                                     }, 1000);
                                 } else {
-                                    const button = document.querySelector('button');
+                                    const button = document.querySelectorAll('button')[1];
                                     button.style.display = 'block';
                                     button.addEventListener('click', () => {
                                         button.style.display = 'none';
@@ -202,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                         }
                                     }, 1000);
                                 }
-                                const button = document.querySelector('button');
+                                const button = document.querySelectorAll('button')[1];
                                 button.style.display = 'block';
                                 button.addEventListener('click', () => {
                                     button.style.display = 'none';
@@ -214,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         // save result to the database
                         saveResult(); 
 
-                        const button = document.querySelector('button');
+                        const button = document.querySelectorAll('button')[1];
                         button.textContent = 'See Result';
                         clearInterval(timerInterval);
                         const timeDone = document.getElementById('timerValue').textContent;
