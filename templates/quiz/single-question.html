@@ -15,30 +15,30 @@
     <div class="flex justify-center pt-32 flex-col gap-10">
 
         <h2 style="text-shadow: 0 0 50px red"
-            class="text-3xl font-bold select-none text-center text-red-500 drop-shadow-2xl w-3/5 mx-auto"
+            class="text-3xl font-bold select-none text-center text-red-500 drop-shadow-2xl w-3/5 max-lg:w-11/12 max-lg:text-stone-100 mx-auto"
             data-id="{{ question.id }}" data-type="{{ question_type }}">
             Question: {{ question.question_text }}
         </h2>
 
-        <section class="w-3/5 mx-auto flex flex-wrap gap-3 justify-center items-center">
+        <section class="w-3/5 max-lg:w-11/12 max-md:flex-col mx-auto flex flex-wrap gap-3 justify-center items-center">
 
             <div
-                class="option select-none min-h-16 cursor-pointer text-xl flex-1 text-center bg-sky-400 h-10 flex items-center justify-center rounded-md">
+                class="option select-none min-h-16 cursor-pointer text-xl flex-1 max-md:w-full text-center bg-sky-400 h-10 flex items-center justify-center rounded-md">
                 A: {{ question.option1 }}
             </div>
             <div
-                class="option select-none min-h-16 cursor-pointer text-xl flex-1 text-center bg-sky-400 h-10 flex items-center justify-center rounded-md">
+                class="option select-none min-h-16 cursor-pointer text-xl flex-1 max-md:w-full text-center bg-sky-400 h-10 flex items-center justify-center rounded-md">
                 B: {{ question.option2 }}
             </div>
 
-            <div class="w-full"></div>
+            <div class="w-full max-md:hidden"></div>
 
             <div
-                class="option select-none min-h-16 cursor-pointer text-xl flex-1 text-center bg-sky-400 h-10 flex items-center justify-center rounded-md">
+                class="option select-none min-h-16 cursor-pointer text-xl flex-1 max-md:w-full text-center bg-sky-400 h-10 flex items-center justify-center rounded-md">
                 C: {{ question.option3 }}
             </div>
             <div
-                class="option select-none min-h-16 cursor-pointer text-xl flex-1 text-center bg-sky-400 h-10 flex items-center justify-center rounded-md">
+                class="option select-none min-h-16 cursor-pointer text-xl flex-1 max-md:w-full text-center bg-sky-400 h-10 flex items-center justify-center rounded-md">
                 D: {{ question.option4 }}
             </div>
 

@@ -21,13 +21,14 @@
     }
 </style>
 
+
 <div class="bg-slate-800">
-    <nav class="flex flex-wrap justify-between items-center mx-8 text-2xl">
+    <nav class="flex justify-between items-center mx-8 text-2xl">
         <ul>
-            <a href="/"><img class="w-52 h-auto" src="{% static 'images/nav-logo.png' %}" alt=""></a>
+            <a href="/"><img class="w-52 max-lg:w-36 max-md:w-20 h-auto" src="{% static 'images/nav-logo.png' %}" alt=""></a>
         </ul>
 
-        <ul class="flex gap-5">
+        <ul class="hidden lg:flex gap-5">
             <li class="underline-on-hover">
                 <a href="{% url 'leaderboard' %}" class="block text-center p-4 text-gray-100">
                     Leaderboards
@@ -45,13 +46,11 @@
             </li>
         </ul>
 
-        <ul class="flex gap-5">
+        <ul class="hidden lg:flex gap-5">
             {% if user.is_authenticated %}
             <li class="underline-on-hover">
                 <a href="{% url 'profile' user %}" class="block text-center p-4 text-gray-100">
-                    {% if user.is_authenticated %}
                     Profile
-                    {% endif %}
                 </a>
             </li>
             <li class="underline-on-hover">
@@ -59,7 +58,6 @@
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </a>
             </li>
-
             {% else %}
             <li class="underline-on-hover">
                 <a href="{% url 'login' %}" class="block text-center p-4 text-gray-100">
@@ -70,8 +68,73 @@
                 <a href="{% url 'register' %}" class="block text-center p-4 text-gray-100">
                     Register
                 </a>
-            </li>          
+            </li>
             {% endif %}
         </ul>
+
+        <div id="hamburger" class="block lg:hidden">
+            <button id="hamburger-btn" class="focus:outline-none">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
     </nav>
+
+    <div id="mobileMenu" class="hidden lg:hidden bg-slate-800">
+        <!-- Mobile menu items -->
+        <ul class="flex flex-col gap-2 items-end">
+            <li>
+                <a href="{% url 'leaderboard' %}" class="block text-center p-4 text-gray-100">
+                    Leaderboards
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'recent-quizzes' %}" class="block text-center p-4 text-gray-100">
+                    Recent
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'about' %}" class="block text-center p-4 text-gray-100">
+                    About
+                </a>
+            </li>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'profile' user %}" class="block text-center p-4 text-gray-100">
+                    Profile
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}" class="block text-center p-4 text-gray-100">
+                    Logout
+                </a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'login' %}" class="block text-center p-4 text-gray-100">
+                    Log in
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'register' %}" class="block text-center p-4 text-gray-100">
+                    Register
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            hamburgerBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
 </div>

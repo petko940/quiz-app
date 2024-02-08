@@ -23,23 +23,23 @@
 <div class="flex justify-center flex-col p-10 gap-3">
 
     <a href="{% url 'change_username' user %}"
-        class="mx-auto text-center w-1/4 text-3xl text-slate-200 py-1 px-3 bg-emerald-600 rounded">
+        class="mx-auto text-center w-1/4 max-lg:w-1/2 text-3xl text-slate-200 py-1 px-3 bg-emerald-600 rounded">
         Change Username
     </a>
 
     {% if not user.social_auth.exists %}
     <a href="{% url 'change_email' user %}"
-        class="mx-auto text-center w-1/4 text-3xl text-slate-200 py-1 px-1 bg-teal-800 rounded">
+        class="mx-auto text-center w-1/4 max-lg:w-1/2 text-3xl text-slate-200 py-1 px-1 bg-teal-800 rounded">
         Change Email
     </a>
     <a href="{% url 'change_password' user %}"
-        class="mx-auto text-center w-1/4 text-3xl text-slate-200 py-1 px-1 bg-blue-800 rounded">
+        class="mx-auto text-center w-1/4 max-lg:w-1/2 text-3xl text-slate-200 py-1 px-1 bg-blue-800 rounded">
         Change Password
     </a>
     {% endif %}
 
     <a href="{% url 'delete_profile' user %}"
-        class="mx-auto text-center w-1/4 text-3xl text-slate-200 py-1 px-3 bg-red-800 rounded">
+        class="mx-auto text-center w-1/4 max-lg:w-1/2 text-3xl text-slate-200 py-1 px-3 bg-red-800 rounded">
         Delete Profile
     </a>
 
