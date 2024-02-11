@@ -20,15 +20,27 @@ class PythonQuestions(BaseQuestion):
     def __str__(self):
         return "Python"
 
+    class Meta:
+        verbose_name = "Python Questions"
+        verbose_name_plural = "Python Questions"
+
 
 class JSQuestions(BaseQuestion):
     def __str__(self):
         return "JavaScript"
 
+    class Meta:
+        verbose_name = "JavaScript Questions"
+        verbose_name_plural = "JavaScript Questions"
+
 
 class HTMLCSSQuestions(BaseQuestion):
     def __str__(self):
         return "HTML/CSS"
+
+    class Meta:
+        verbose_name = "HTML/CSS Questions"
+        verbose_name_plural = "HTML/CSS Questions"
 
 
 class QuizResult(models.Model):
