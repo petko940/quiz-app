@@ -3,11 +3,9 @@ python -m venv venv
 python manage.py runserver
 npm run watch
 
-rm ./static/output.css  / remove
 
 
 # install
-
 npm install -D tailwindcss
 npx tailwindcss init
 
